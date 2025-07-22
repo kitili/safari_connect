@@ -5,7 +5,7 @@ const { faker } = require('@faker-js/faker');
 
 dotenv.config();
 
-const connectDB = require('./config/db'); // make sure this exists
+const connectDB = require('./Config/db'); // make sure this exists
 const User = require('./models/user');
 const Trip = require('./models/Trip');
 
@@ -21,10 +21,19 @@ const createFakeTrip = (userId) => {
 
   return {
     user: userId,
+    name: faker.person.fullName(),
+    idNumber: faker.string.numeric(8),
+    idType: faker.helpers.arrayElement(['Kenyan Passport', 'Kenyan ID', 'International Passport']),
     destination: faker.helpers.arrayElement(destinations),
     startDate: start,
     endDate: end,
-    activities: faker.helpers.arrayElements(activitiesList, faker.number.int({ min: 2, max: 5 }))
+    groupSize: faker.number.int({ min: 1, max: 10 }),
+    interests: faker.helpers.arrayElements(activitiesList, faker.number.int({ min: 2, max: 5 })).join(', '),
+    lookingForCompanion: faker.datatype.boolean(),
+    travelStyle: faker.helpers.arrayElement(['budget', 'luxury', 'adventure', 'relaxation', 'cultural', 'mixed']),
+    accommodationPreference: faker.helpers.arrayElement(['hostel', 'hotel', 'camping', 'airbnb', 'any']),
+    email: faker.internet.email(),
+    phone: faker.phone.number()
   };
 };
 

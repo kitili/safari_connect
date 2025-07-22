@@ -46,7 +46,7 @@ if (process.env.NODE_ENV !== 'production') {
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const matchRoutes = require('./routes/matchRoutes');
-// const chatRoutes = require('./routes/chatRoutes'); // Temporarily disabled
+const chatRoutes = require('./routes/chatRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
@@ -54,7 +54,7 @@ const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/auth', authRoutes);    // /api/auth/signup, /login
 app.use('/api/users', userRoutes);
 app.use('/api/match', matchRoutes);
-// app.use('/api/chat', chatRoutes); // Temporarily disabled to fix backend startup
+app.use('/api/chat', chatRoutes);
 app.use('/api/trips', tripRoutes);
 app.use('/api/admin', adminRoutes);
 
